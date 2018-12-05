@@ -9,9 +9,8 @@
 <body style="margin:0px; overflow:hidden;">
   <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
-  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
-  <script src="https://rawgit.com/donmccurdy/aframe-extras/v2.1.1/dist/aframe-extras.loaders.min.js"></script>
-
+  <script>require('aframe-extras');</script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
   <a-scene embedded arjs="trackingMethod:best; debugUIEnabled:false;">
 
@@ -22,7 +21,7 @@
 
     <!-- マーカーを登録 -->
     <a-marker preset='custom' type='pattern' url="../marker/pattern-marker.patt">
-      <a-entity gltf-model-next="#boss" animation-mixer></a-entity>
+      <a-entity position="0 1 0" gltf-model="#boss" animation-mixer="clip: *;"></a-entity>
     </a-marker>
 
 
