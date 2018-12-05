@@ -16,14 +16,14 @@
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
   <a-scene embedded arjs="trackingMethod:best; debugUIEnabled:false;">
 
-    <!-- OBJ形式のCGモデルの読み込み -->
+    <!-- CGモデルの読み込み -->
     <a-assets>
       <a-asset-item id="boss" src="Start_Walking.gltf"></a-asset-item>
     </a-assets>
 
     <!-- マーカーを登録 -->
     <a-marker preset='custom' type='pattern' url="../marker/pattern-marker.patt">
-      <a-entity gltf-model-next="##boss"></a-entity>
+      <a-entity gltf-model-next="##boss" animation-mixer></a-entity>
     </a-marker>
 
 
