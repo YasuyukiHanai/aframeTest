@@ -101,10 +101,6 @@
 
     <a-scene xrweb loading-screen tap-place>
 
-      <a-assets>
-        <a-asset-item id="treeModel" gltf-model="Pnatsda_gltf.gltf" animation-mixer="clip: *;"></a-asset-item>
-      </a-assets>
-
       <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
       <a-camera
         position="0 8 0"
@@ -132,6 +128,9 @@
         scale="1000 2 1000"
         position="0 -1 0">
       </a-entity>
+
+      <a-entity id="treeModel" gltf-model="Pnatsda_gltf.gltf" animation-mixer="clip: *;"></a-entity>
+
     </a-scene>
 
   </body>
