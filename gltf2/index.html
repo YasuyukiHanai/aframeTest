@@ -75,8 +75,33 @@
     <!-- Add the 'xrweb' attribute to your scene to make it an 8th Wall Web A-FRAME scene. -->
     <a-scene xrweb tap-recenter loading-screen>
 
-      <a-camera></a-camera>
-      <a-entity gltf-model="Pnatsda_gltf.gltf" animation-mixer="clip: *;"></a-entity>
+      <a-camera position="0 8 8"></a-camera>
+
+      <a-entity
+        light="type: directional;
+               castShadow: true;
+               intensity: 0.8;
+               shadowCameraTop: 7;
+               shadowMapHeight: 1024;
+               shadowMapWidth: 1024;"
+        position="1 4.3 2.5">
+      </a-entity>
+
+      <a-entity
+        light="type: directional; castShadow: false; intensity: 0.5;"
+        position="-0.8 3 1.85">
+      </a-entity>
+
+      <a-light type="ambient" intensity="1"></a-light>
+
+      <a-box
+        position="-1.7 0.5 -2"
+        rotation="0 45 0"
+        material="roughness: 0.8; metalness: 0.2; color: #00EDAF;"
+        shadow>
+      </a-box>
+
+      <a-entity position="-1.7 0.5 -2" gltf-model="Pnatsda_gltf.gltf" animation-mixer="clip: *;"></a-entity>
 
     </a-scene>
   </body>
