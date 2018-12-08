@@ -12,7 +12,7 @@
   <script>require('aframe-extras');</script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
-  <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;">
+  <a-scene embedded arjs="trackingMethod:best; debugUIEnabled:false;">
 
     <!-- マーカーを登録 -->
     <a-marker preset='custom' type='pattern' url="../marker/pattern-marker.patt">
