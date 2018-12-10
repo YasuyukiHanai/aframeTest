@@ -41,7 +41,7 @@
           const ground = document.getElementById('ground')
           ground.addEventListener('click', event => {
             // Create new entity for the new object
-            const newElement = document.createElement('a-entity')
+            const newElement = document.createElement('a-obj-model')
 
             // The raycaster gives a location of the touch in the scene
             const touchPoint = event.detail.intersection.point
@@ -54,7 +54,7 @@
             newElement.setAttribute('scale', '0.0001 0.0001 0.0001')
 
             newElement.setAttribute('src', '#hello-obj')
-            newElement.setAttribute('mtl', '#crate-mtl')
+            newElement.setAttribute('mtl', '#hello-mtl')
             this.el.sceneEl.appendChild(newElement)
 
             newElement.addEventListener('model-loaded', () => {
@@ -99,15 +99,15 @@
       </div>
     </div>
 
+    <!-- We must add the tap-place component to the scene so it has an effect -->
     <a-scene xrweb loading-screen tap-place>
-      <!-- <a-assets>
-        <a-asset-item id="treeModel" src="tree.glb"></a-asset-item>
-      </a-assets> -->
+
       <a-assets>
         <a-asset-item id="hello-obj" src="hello.obj"></a-asset-item>
         <a-asset-item id="hello-mtl" src="hello.mtl"></a-asset-item>
       </a-assets>
 
+      <!-- The raycaster will emit mouse events on scene objects specified with the cantap class -->
       <a-camera
         position="0 8 0"
         raycaster="objects: .cantap"
