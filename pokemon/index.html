@@ -16,15 +16,15 @@
 
     <!-- マーカーを登録 -->
     <a-marker preset='custom' type='pattern' url="./pattern-marker.patt">
-      <a-entity light="type: directional; castShadow: true; intensity: 0.8; shadowCameraTop: 7; shadowMapHeight: 1024; shadowMapWidth: 1024;" position="1 4.3 2.5">
-      </a-entity>
-      <a-entity light="type: directional; castShadow: false; intensity: 0.5;" position="-0.8 3 1.85">
-      </a-entity>
-      <a-light type="ambient" intensity="1"></a-light>
-      <a-entity position="0 0 0" gltf-model="scene.gltf"></a-entity>
+      <a-entity position="0 0 0" scale="1.5 1.5 1.5" gltf-model="scene.gltf"></a-entity>
     </a-marker>
 
     <a-entity camera></a-entity>
+    <a-entity light="type: directional; castShadow: true; intensity: 0.8; shadowCameraTop: 7; shadowMapHeight: 1024; shadowMapWidth: 1024;" position="1 4.3 2.5">
+    </a-entity>
+    <a-entity light="type: directional; castShadow: false; intensity: 0.5;" position="-0.8 3 1.85">
+    </a-entity>
+    <a-light type="ambient" intensity="1"></a-light>
 
   </a-scene>
 </body>
