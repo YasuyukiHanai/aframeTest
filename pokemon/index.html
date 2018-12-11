@@ -46,83 +46,57 @@
     </script>
 
     <style>
-      @keyframes high-jump {
-        0% {
-          top: 50%;
-        }
-        50% {
-          top: calc(50% - 200px);
-        }
-        100% {
-          top: 50%;
-        }
-      }
-      @keyframes low-jump {
-        0% {
-          top: 50%;
-        }
-        5% {
-          top: calc(50% - 100px);
-        }
-        25% {
-          top: 50%;
-        }
-        100% {
-          top: 50%;
-        }
-      }
-      .loading span {
-        position: absolute;
-        top: 50%;
-        display: block;
-        width: 48px;
-        height: 48px;
-        background-color: #0ef;
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      }
-      .loading span::after {
-        width: 48px;
-        height: 48px;
-        content: '';
-        background-color: white;
-        display: block;
-        clip-path: polygon(50% 0%, 100% 25%, 50% 50%, 0% 25%);
-      }
-      .loading span:nth-child(1) {
-        transform: translate(0px, -30px);
-        animation: 3s ease-in-out 0.75s infinite low-jump;
-      }
-      .loading span:nth-child(2) {
-        transform: translate(25px, -15px);
-        animation: 3s ease-in-out 1s infinite low-jump;
-      }
-      .loading span:nth-child(3) {
-        transform: translate(-25px, -15px);
-        animation: 3s ease-in-out 0.5s infinite low-jump;
-      }
-      .loading span:nth-child(4) {
-        animation: 3s ease-in-out infinite high-jump;
-      }
-      .loading span:nth-child(5) {
-        transform: translate(-50px, 0px);
-        animation: 3s ease-in-out 0.25s infinite low-jump;
-      }
-      .loading span:nth-child(6) {
-        transform: translate(50px, 0px);
-        animation: 3s ease-in-out 1.25s infinite low-jump;
-      }
-      .loading span:nth-child(7) {
-        transform: translate(25px, 15px);
-        animation: 3s ease-in-out 1.5s infinite low-jump;
-      }
-      .loading span:nth-child(8) {
-        transform: translate(-25px, 15px);
-        animation: 3s ease-in-out 2s infinite low-jump;
-      }
-      .loading span:nth-child(9) {
-        transform: translate(0px, 30px);
-        animation: 3s ease-in-out 1.75s infinite low-jump;
-      }
+.loading{
+    font-size: 0;
+    width:55px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform:rotate(45deg);
+}
+.loading span{
+    display:inline-block;
+    background-color: #2cb0b2;
+    width:25px;
+    height:25px;
+    margin:0;
+    padding:0;
+}
+.loading span:nth-child(1){
+    -webkit-animation: animation1-box1 1.5s infinite;
+    animation: animation1-box1 2s infinite;
+}
+.loading span:nth-child(2){
+    -webkit-animation: animation1-box2 1.5s infinite;
+    animation: animation1-box2 2s infinite;
+}
+.loading span:nth-child(3){
+    -webkit-animation: animation1-box3 1.5s infinite;
+    animation: animation1-box3 2s infinite;
+}
+.loading span:nth-child(4){
+    -webkit-animation: animation1-box4 1.5s infinite;
+    animation: animation1-box4 2s infinite;
+}
+@keyframes animation1-box1{
+    40%{transform: translate(-25px, -25px) rotate(85deg);}
+    50%{transform: translate(-25px, -25px) rotate(90deg);}
+    100%{transform: translate(-0px, -0px) rotate(180deg);}
+}
+@keyframes animation1-box2{
+    40%{transform: translate(50px, -25px) rotate(85deg);}
+    50%{transform: translate(50px, -25px) rotate(90deg);}
+    100%{transform: translate(-0px, -0px) rotate(180deg);}
+}
+@keyframes animation1-box3{
+    40%{transform: translate(-50px, 25px) rotate(85deg);}
+    50%{transform: translate(-50px, 25px) rotate(90deg);}
+    100%{transform: translate(-0px, -0px) rotate(180deg);}
+}
+@keyframes animation1-box4{
+    40%{transform: translate(25px, 25px) rotate(85deg);}
+    50%{transform: translate(25px, 25px) rotate(90deg);}
+    100%{transform: translate(-0px, -0px) rotate(180deg);}
+}
     </style>
   </head>
   <body>
@@ -145,10 +119,10 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  background-color: grey;
+                  background-color: #fff;
                   height: 100vh;
                   pointer-events: auto;">
-        <div class='loading'><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="loading"><span></span><span></span><span></span><span></span></div>
       </div>
     </div>
 
