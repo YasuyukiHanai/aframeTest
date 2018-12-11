@@ -2412,9 +2412,6 @@
   "materials": [
     {
       "doubleSided": false,
-      "extensions": {
-        "KHR_materials_unlit": {}
-      },
       "name": "RSE_mat",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
@@ -2433,9 +2430,6 @@
     },
     {
       "doubleSided": false,
-      "extensions": {
-        "KHR_materials_unlit": {}
-      },
       "name": "RSE_pokeball",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
@@ -2455,9 +2449,6 @@
     {
       "alphaMode": "BLEND",
       "doubleSided": false,
-      "extensions": {
-        "KHR_materials_unlit": {}
-      },
       "name": "RSE_misc",
       "pbrMetallicRoughness": {
         "baseColorFactor": [
