@@ -111,12 +111,10 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
-            Window.alert("ねこ！");
-            return;
+            window.confirm("ねこ！");
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
-            Window.alert("いぬ！");
-            return;
+            window.confirm("いぬ！");
           }
         }
         // else {
