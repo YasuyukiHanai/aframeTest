@@ -111,7 +111,18 @@
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
-          outputInfo.innerText = code;
+          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
+            function() {
+              Window.alert("ねこ！");
+            }
+            return;
+          }
+          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
+            function() {
+              Window.alert("いぬ！");
+            }
+            return;
+          }
         }
         // else {
         //   outputMessage.hidden = false;
