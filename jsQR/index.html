@@ -61,8 +61,6 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
   </div>
-  <audio id="audioA" preload="auto" controls hidden><source src="cat_test.mp3" type="audio/mp3"></audio>
-  <audio id="audioB" preload="auto" controls hidden><source src="dog_test.mp3" type="audio/mp3"></audio>
   <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
@@ -83,7 +81,7 @@
     }
 
     // Use facingMode: environment to attemt to get the front camera on phones
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }}).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: true}).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       video.play();
@@ -113,10 +111,36 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
-            document.getElementById("audioA").play();
+              const xhr = new XMLHttpRequest();
+              xhr.open('GET', './cat_test.mp3', true);
+              xhr.responseType = 'arraybuffer';
+              xhr.onload = () => {
+                const ctx = new AudioContext();
+                const source = ctx.createBufferSource();
+                ctx.decodeAudioData(xhr.response).then(buffer => {
+                  source.buffer = buffer;
+
+                  source.connect(ctx.destination);
+                  source.start(ctx.currentTime);
+                });
+              };
+              xhr.send();
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
-            document.getElementById("audioB").play();
+              const xhr = new XMLHttpRequest();
+              xhr.open('GET', './dog_test.mp3', true);
+              xhr.responseType = 'arraybuffer';
+              xhr.onload = () => {
+                const ctx = new AudioContext();
+                const source = ctx.createBufferSource();
+                ctx.decodeAudioData(xhr.response).then(buffer => {
+                  source.buffer = buffer;
+
+                  source.connect(ctx.destination);
+                  source.start(ctx.currentTime);
+                });
+              };
+              xhr.send();
           }
         }
         // else {
