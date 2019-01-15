@@ -3,6 +3,7 @@
   <meta charset="utf-8">
   <title>jsQR Demo</title>
   <script type="text/javascript" async src="./jsQR.js"></script>
+  <script type="text/javascript" async src="./wa.js"></script>
   <style>
     body {
       position: relative;
@@ -71,6 +72,11 @@
     var outputData = document.getElementById("outputData");
     var outputInfo = document.getElementById("outputInfo");
 
+    var event = "click";
+    document.addEventListener(event, function() {
+      wa.playSilent();
+    });
+
     function drawLine(begin, end, color) {
       canvas.beginPath();
       canvas.moveTo(begin.x, begin.y);
@@ -81,7 +87,7 @@
     }
 
     // Use facingMode: environment to attemt to get the front camera on phones
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: true}).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }}).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       video.play();
@@ -111,38 +117,14 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', './cat_test.mp3', true);
-              xhr.responseType = 'arraybuffer';
-              xhr.onload = () => {
-                window.AudioContext = window.AudioContext || window.webkitAudioContext;
-                const ctx = new AudioContext();
-                const source = ctx.createBufferSource();
-                ctx.decodeAudioData(xhr.response).then(buffer => {
-                  source.buffer = buffer;
-
-                  source.connect(ctx.destination);
-                  source.start(0);
-                });
-              };
-              xhr.send();
+            wa.loadFile("./assets/cat_test.mp3", function(buffer) {
+              wa.play(buffer);
+            });
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
-              const xhr = new XMLHttpRequest();
-              xhr.open('GET', './dog_test.mp3', true);
-              xhr.responseType = 'arraybuffer';
-              xhr.onload = () => {
-                window.AudioContext = window.AudioContext || window.webkitAudioContext;
-                const ctx = new AudioContext();
-                const source = ctx.createBufferSource();
-                ctx.decodeAudioData(xhr.response).then(buffer => {
-                  source.buffer = buffer;
-
-                  source.connect(ctx.destination);
-                  source.start(0);
-                });
-              };
-              xhr.send();
+            wa.loadFile("./assets/dog_test.mp3", function(buffer) {
+              wa.play(buffer);
+            });
           }
         }
         // else {
