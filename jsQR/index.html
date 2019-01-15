@@ -61,6 +61,8 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
   </div>
+  <audio id="audioA" preload="auto" controls hidden><source src="cat_test.mp3" type="audio/mp3"></audio>
+  <audio id="audioB" preload="auto" controls hidden><source src="dog_test.mp3" type="audio/mp3"></audio>
   <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
@@ -111,10 +113,10 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
-            window.confirm("ねこ！");
+            $('#audioA').get(0).play();
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
-            window.confirm("いぬ！");
+            $('#audioB').get(0).play();
           }
         }
         // else {
