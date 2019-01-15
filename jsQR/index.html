@@ -115,13 +115,14 @@
               xhr.open('GET', './cat_test.mp3', true);
               xhr.responseType = 'arraybuffer';
               xhr.onload = () => {
+                window.AudioContext = window.AudioContext || window.webkitAudioContext;
                 const ctx = new AudioContext();
                 const source = ctx.createBufferSource();
                 ctx.decodeAudioData(xhr.response).then(buffer => {
                   source.buffer = buffer;
 
                   source.connect(ctx.destination);
-                  source.start(ctx.currentTime);
+                  source.start(0);
                 });
               };
               xhr.send();
@@ -131,13 +132,14 @@
               xhr.open('GET', './dog_test.mp3', true);
               xhr.responseType = 'arraybuffer';
               xhr.onload = () => {
+                window.AudioContext = window.AudioContext || window.webkitAudioContext;
                 const ctx = new AudioContext();
                 const source = ctx.createBufferSource();
                 ctx.decodeAudioData(xhr.response).then(buffer => {
                   source.buffer = buffer;
 
                   source.connect(ctx.destination);
-                  source.start(ctx.currentTime);
+                  source.start(0);
                 });
               };
               xhr.send();
