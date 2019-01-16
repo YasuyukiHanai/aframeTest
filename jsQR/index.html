@@ -139,30 +139,30 @@
           outputData.innerText = code.data;
           waPlayFlag = true;
 
-          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3" && waPlayFlag) {
+          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3" && waPlayFlag == true) {
             wa.loadFile("./cat_test.mp3", function(buffer) {
               wa.play(buffer);
               waPlayFlag = false;
-              // wa.addEventListener("ended", function() {
-              //   waPlayFlag = true;
-              // });
+              wa.addEventListener("ended", function() {
+                waPlayFlag = true;
+              });
               // 短すぎるのでタイマーへ
-              setTimeout(function() {
-                  waPlayFlag = true;
-              }, 2000);
+              // setTimeout(function() {
+              //     waPlayFlag = true;
+              // }, 2000);
             });
           }
-          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3" && waPlayFlag) {
+          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3" && waPlayFlag == true) {
             wa.loadFile("./dog_test.mp3", function(buffer) {
               wa.play(buffer);
               waPlayFlag = false;
-              // wa.addEventListener("ended", function() {
-              //   waPlayFlag = true;
-              // });
+              wa.addEventListener("ended", function() {
+                waPlayFlag = true;
+              });
               // 短すぎるのでタイマーへ
-              setTimeout(function() {
-                  waPlayFlag = true;
-              }, 2000);
+              // setTimeout(function() {
+              //     waPlayFlag = true;
+              // }, 2000);
             });
           }
         }
