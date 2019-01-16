@@ -93,6 +93,7 @@
     var outputInfo = document.getElementById("outputInfo");
 
     var event = "click";
+    var waPlayFlag;
     document.addEventListener(event, function() {
       wa.playSilent();
     });
@@ -136,14 +137,23 @@
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
-          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
+
+          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3" && waPlayFlag) {
             wa.loadFile("./cat_test.mp3", function(buffer) {
               wa.play(buffer);
+              waPlayFlag = false;
+              wa.addEventListener("ended", function() {
+                waPlayFlag = true;
+              });
             });
           }
-          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
+          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3" && waPlayFlag) {
             wa.loadFile("./dog_test.mp3", function(buffer) {
               wa.play(buffer);
+              waPlayFlag = false;
+              wa.addEventListener("ended", function() {
+                waPlayFlag = true;
+              });
             });
           }
         }
