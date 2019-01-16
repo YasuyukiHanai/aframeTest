@@ -4,6 +4,7 @@
   <title>jsQR Demo</title>
   <script type="text/javascript" async src="./jsQR.js"></script>
   <script type="text/javascript" src="./wa.js"></script>
+  <script src="./NoSleep.min.js"></script>
   <style>
     body {
       position: relative;
@@ -62,15 +63,24 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
   </div>
-  <button onclick="iosSleepPreventInterval()" type="button">自動ロック解除</button>
+  <input type="button" id="toggle" value="自動ロック解除" />
   <script>
-    var iosSleepPreventInterval;
-    iosSleepPreventInterval = setInterval(function() {
-        window.location.href = "/new/page";
-        window.setTimeout(function() {
-         window.stop()
-        }, 0);
-    }, 30000);
+      var noSleep = new NoSleep();
+      var wakeLockEnabled = false;
+      var toggleEl = document.querySelector("#toggle");
+      toggleEl.addEventListener('click', function() {
+        if (!wakeLockEnabled) {
+          noSleep.enable();
+          wakeLockEnabled = true;
+          toggleEl.value = "自動ロック解除中";
+          document.body.style.backgroundColor = "green";
+        } else {
+          noSleep.disable();
+          wakeLockEnabled = false;
+          toggleEl.value = "自動ロック解除オフ";
+          document.body.style.backgroundColor = "";
+        }
+      }, false);
   </script>
   <script>
     var video = document.createElement("video");
