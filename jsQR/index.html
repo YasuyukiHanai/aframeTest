@@ -62,6 +62,8 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
   </div>
+  <button onclick="document.getElementById('silent').play()" type="button">自動ロック解除</button>
+  <audio id="silent" src="./silent.mp3" hidden loop></audio>
   <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
