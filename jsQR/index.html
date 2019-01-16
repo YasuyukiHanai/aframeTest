@@ -92,7 +92,7 @@
     var outputData = document.getElementById("outputData");
     var outputInfo = document.getElementById("outputInfo");
 
-    var waPlayFlag;
+    var waPlayFlag = true;
     var event = "click";
     document.addEventListener(event, function() {
       wa.playSilent();
@@ -137,7 +137,6 @@
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
-          waPlayFlag = true;
 
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3" && waPlayFlag == true) {
             wa.loadFile("./cat_test.mp3", function(buffer) {
