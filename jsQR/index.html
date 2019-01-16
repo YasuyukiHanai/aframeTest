@@ -139,6 +139,7 @@
 
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
             wa.loadFile("./cat_test.mp3", function(buffer) {
+              wa.play(buffer);
               // waPlayFlag = false;
               // wa.addEventListener("ended", function() {
               //   waPlayFlag = true;
@@ -147,13 +148,11 @@
               // setTimeout(function() {
               //     waPlayFlag = true;
               // }, 2000);
-              if(wa.currentTime == 0) {
-                  wa.play(buffer);
-              }
             });
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
             wa.loadFile("./dog_test.mp3", function(buffer) {
+              wa.play(buffer);
               // waPlayFlag = false;
               // wa.addEventListener("ended", function() {
               //   waPlayFlag = true;
@@ -162,9 +161,6 @@
               // setTimeout(function() {
               //     waPlayFlag = true;
               // }, 2000);
-              if(wa.currentTime == 0) {
-                  wa.play(buffer);
-              }
             });
           }
         }
