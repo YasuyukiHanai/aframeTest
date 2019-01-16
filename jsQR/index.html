@@ -139,22 +139,18 @@
           outputData.innerText = code.data;
 
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
+            waPlayFlag = false;
             wa.loadFile("./cat_test.mp3", function(buffer) {
               wa.play(buffer);
-              waPlayFlag = false;
-              // wa.addEventListener("ended", function() {
-              //   waPlayFlag = true;
-              // });
-              // 短すぎるのでタイマーへ
-              setTimeout(function() {
-                waPlayFlag = true;
-              }, 3000);
             });
+            setTimeout(function() {
+              waPlayFlag = true;
+            }, 3000);
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
+            waPlayFlag = false;
             wa.loadFile("./dog_test.mp3", function(buffer) {
               wa.play(buffer);
-              waPlayFlag = false;
               // wa.addEventListener("ended", function() {
               //   waPlayFlag = true;
               // });
