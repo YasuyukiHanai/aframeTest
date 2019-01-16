@@ -91,6 +91,7 @@
     var outputMessage = document.getElementById("outputMessage");
     var outputData = document.getElementById("outputData");
     var outputInfo = document.getElementById("outputInfo");
+    var waPlayFlag = true;
 
     var event = "click";
     document.addEventListener(event, function() {
@@ -128,7 +129,7 @@
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: "dontInvert",
         });
-        if (code) {
+        if (code && waPlayFlag == true) {
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
@@ -140,20 +141,20 @@
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
             wa.loadFile("./cat_test.mp3", function(buffer) {
               wa.play(buffer);
-              // waPlayFlag = false;
+              waPlayFlag = false;
               // wa.addEventListener("ended", function() {
               //   waPlayFlag = true;
               // });
               // 短すぎるのでタイマーへ
-              // setTimeout(function() {
-              //     waPlayFlag = true;
-              // }, 2000);
+              setTimeout(function() {
+                waPlayFlag = true;
+              }, 3000);
             });
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
             wa.loadFile("./dog_test.mp3", function(buffer) {
               wa.play(buffer);
-              // waPlayFlag = false;
+              waPlayFlag = false;
               // wa.addEventListener("ended", function() {
               //   waPlayFlag = true;
               // });
@@ -161,6 +162,9 @@
               // setTimeout(function() {
               //     waPlayFlag = true;
               // }, 2000);
+              setTimeout(function() {
+                waPlayFlag = true;
+              }, 3000);
             });
           }
         }
