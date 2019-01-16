@@ -62,8 +62,16 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
   </div>
-  <button onclick="document.getElementById('silent').play()" type="button">自動ロック解除</button>
-  <video id="silent" playsinline muted autoplay loop src="https://rawgit.com/bower-media-samples/big-buck-bunny-480p-30s/master/video.mp4" height="0"></video>
+  <button onclick="iosSleepPreventInterval()" type="button">自動ロック解除</button>
+  <script>
+    var iosSleepPreventInterval;
+    iosSleepPreventInterval = setInterval(function() {
+        window.location.href = "/new/page";
+        window.setTimeout(function() {
+         window.stop()
+        }, 0);
+    }, 30000);
+  </script>
   <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
