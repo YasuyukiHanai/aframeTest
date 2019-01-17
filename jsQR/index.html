@@ -92,6 +92,11 @@
     var outputData = document.getElementById("outputData");
     var outputInfo = document.getElementById("outputInfo");
     var waPlayFlag = true;
+    var buffer_data = [];
+    buffer_data = {
+                  "./cat_test.mp3",
+                  "./dog_test.mp3"
+                };
 
     var event = "click";
     document.addEventListener(event, function() {
@@ -140,7 +145,7 @@
 
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
             waPlayFlag = false;
-            wa.loadFile("./cat_test.mp3", function(buffer) {
+            wa.loadFile(buffer_data[0], function(buffer) {
               wa.play(buffer);
             });
             setTimeout(function() {
@@ -149,19 +154,15 @@
           }
           if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
             waPlayFlag = false;
-            wa.loadFile("./dog_test.mp3", function(buffer) {
+            wa.loadFile(buffer_data[1], function(buffer) {
               wa.play(buffer);
-              // wa.addEventListener("ended", function() {
-              //   waPlayFlag = true;
-              // });
-              // 短すぎるのでタイマーへ
-              // setTimeout(function() {
-              //     waPlayFlag = true;
-              // }, 2000);
-              setTimeout(function() {
-                waPlayFlag = true;
-              }, 3000);
+              wa.addEventListener("ended", function() {
+                console.log('ended')
+              });
             });
+            setTimeout(function() {
+              waPlayFlag = true;
+            }, 3000);
           }
         }
         // else {
