@@ -152,9 +152,9 @@
             waPlayFlag = false;
             wa.loadFile(buffer_data[1], function(buffer) {
               wa.play(buffer);
-              wa.addEventListener("ended", function() {
-                console.log('ended')
-              });
+              // wa.addEventListener("ended", function() {
+              //   console.log('ended')
+              // });
             });
             setTimeout(function() {
               waPlayFlag = true;
