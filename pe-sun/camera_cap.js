@@ -7,7 +7,7 @@
   function ready() {
     document.getElementById("capture").onclick = function() {
           var scene = document.querySelector('a-scene');
-          var video = document.getElementById('camera-bg');
+          var video = document.getElementsByTagName('video')[0];
 
           if (scene && video) {
             width = scene.offsetWidth;
