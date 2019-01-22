@@ -19,9 +19,8 @@
               const entity = document.querySelector('#animated-model');
               const clips = ["clip: *; crossFadeDuration: 0.5;", "clip: Idle; crossFadeDuration: 0.5;"];
               console.log(entity.getAttribute("animation-mixer"))
-              if(entity.getAttribute("animation-mixer") == "clip: *; crossFadeDuration: 0.5;") {
+              if(entity.getAttribute("animation-mixer")["clip"] == "*") {
                 entity.setAttribute("animation-mixer", clips[1]);
-                return;
               } else {
                 entity.setAttribute("animation-mixer", clips[0]);
               }
