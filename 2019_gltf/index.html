@@ -10,6 +10,20 @@
   <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
   <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.1/dist/aframe-extras.min.js"></script>
+  <script>
+    AFRAME.registerComponent('markerhandler', {
+        init: function () {
+          const animatedMarker = document.querySelector("#animated-marker");
+          animatedMarker.addEventListener("click", (e)=> {
+            console.log('markerFound');
+            if (animatedMarker.object3D.visible == true && e.detail.cursorEl) {
+              const entity = document.querySelector('#animated-model');
+              entity.setAttribute("animation-mixer", "clip", " *")
+            }
+          });
+        }
+    });
+  </script>
   <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
   <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;patternRatio:0.70; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
   <a-assets>
@@ -17,8 +31,8 @@
   </a-assets>
 
     <!-- マーカーを登録 -->
-    <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" preset="custom" type="pattern" url="pattern-marker.patt">
-      <a-entity id="animated-model" position="0 1 0" gltf-model="#animated-asset" animation-mixer="clip: *;"></a-entity>
+    <a-marker markerhandler emitevents="true" cursor="fuse: false;rayOrigin: mouse" id="animated-marker" preset="custom" type="pattern" url="pattern-marker.patt">
+      <a-entity id="animated-model" position="0 1 0" gltf-model="#animated-asset"></a-entity>
     </a-marker>
 
 
