@@ -16,9 +16,12 @@
           const animatedMarker = document.querySelector("#animated-marker");
           animatedMarker.addEventListener("click", (e)=> {
             if (animatedMarker.object3D.visible == true && e.detail.cursorEl) {
-              console.log('markerFound');
               const entity = document.querySelector('#animated-model');
-              entity.setAttribute("animation-mixer","clip: *");
+              if(entity.getAttribute("animation-mixer") == "clip: *; crossFadeDuration: 0.5;") {
+                entity.setAttribute("animation-mixer","clip: Idle; crossFadeDuration: 0.5;");
+              } else {
+                entity.setAttribute("animation-mixer","clip: *; crossFadeDuration: 0.5;");
+              }
             }
           });
         }
