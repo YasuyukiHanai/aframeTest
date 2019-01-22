@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aframeTest</title>
+</head>
+<body style="margin:0px; overflow:hidden;">
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+</style>
+
+  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+  <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;patternRatio:0.75;">
+
+    <!-- マーカーを登録 -->
+    <a-marker preset="custom" type="pattern" url="./pattern-marker_1.patt">
+      <a-image id="test1" src="./obj_1.png" position="0 0 0" rotation="-75 -90 90" width="" height="" opacity="1" transparent="true" alpha-test="0.2" shader="standard" scale="1.85 1.85 1.85" visible="" material="" geometry="">
+      </a-image>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="./pattern-marker_2.patt">
+      <a-image id="test2" src="./obj_2.png" position="0 0 0" rotation="-75 -90 90" width="" height="" opacity="1" transparent="true" alpha-test="0.2" shader="standard" scale="1.85 1.85 1.85" visible="" material="" geometry="">
+      </a-image>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="./pattern-marker_3.patt">
+      <a-image id="test3" src="./obj_3.png" position="0 0 0" rotation="-75 -90 90" width="" height="" opacity="1" transparent="true" alpha-test="0.2" shader="standard" scale="1.85 1.85 1.85" visible="" material="" geometry="">
+      </a-image>
+    </a-marker>
+    <a-marker preset="custom" type="pattern" url="./pattern-marker_4.patt">
+      <a-image id="test4" src="./obj_4.png" position="0 0 0" rotation="-75 -90 90" width="" height="" opacity="1" transparent="true" alpha-test="0.2" shader="standard" scale="1.85 1.85 1.85" visible="" material="" geometry="">
+      </a-image>
+    </a-marker>
+
+
+    <!-- AR用のカメラを置く -->
+    <!-- <a-sky src="Face_04.png" material="" geometry=""></a-sky> -->
+    <!-- AR用のカメラを置く -->
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
