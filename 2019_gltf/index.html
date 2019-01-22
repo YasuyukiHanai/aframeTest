@@ -17,8 +17,8 @@
           animatedMarker.addEventListener("click", (e)=> {
             if (animatedMarker.object3D.visible == true && e.detail.cursorEl) {
               console.log('markerFound');
-              const entity = document.querySelector('[animation-mixer]');
-              entity.setAttribute("animation-mixer", {clip: " *" })
+              const entity = document.querySelector('#animated-model');
+              entity.setAttribute("animation-mixer","clip: *");
             }
           });
         }
