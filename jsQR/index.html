@@ -153,7 +153,7 @@
           var checknum = code.data.split('?id=')[1];
           if(checknum) {
               waPlayFlag = false;
-              wa.loadFile( 'sound/' + checknum, function(buffer) {
+              wa.loadFile( 'sound/' + checknum + '.mp3', function(buffer) {
                 wa.play(buffer);
               });
               setTimeout(function() {
