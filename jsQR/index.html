@@ -55,9 +55,10 @@
     }
     #toggle {
       display: table;
-      margin: .75em auto;
-      width: 50%;
       text-align: center;
+      font-size: 18px;
+      width: 50%;
+      margin: .75em auto;
     }
     #lang_change {
       text-align: center;
@@ -65,6 +66,7 @@
     #lang_change .lang_btn {
       display: inline-block;
       width: 15%;
+      font-size: 18px;
     }
     #lang_change[data="ja"] input[value="ja"] {
       background: #f00;
@@ -108,7 +110,6 @@
       //lang
       var toggleLang = document.getElementsByClassName("lang_btn");
       var lang_change = document.getElementById("lang_change");
-        console.log(toggleLang);
       [].forEach.call(document.getElementsByClassName("lang_btn"),function(e){
         e.addEventListener('click',function() {
           lang_change.setAttribute("data", this.value);
