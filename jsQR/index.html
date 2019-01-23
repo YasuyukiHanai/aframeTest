@@ -53,9 +53,27 @@
     #noQRFound {
       text-align: center;
     }
+    #lang_change {
+      text-align: center;
+    }
+    #lang_change .lang_btn {
+      display: inline-block;
+      width: 15%;
+    }
+    #lang_change[data="ja"] input[value="ja"] {
+      background: #f00;
+    }
+    #lang_change[data="eng"] input[value="eng"] {
+      background: #f00;
+    }
   </style>
 </head>
 <body>
+  <div id="lang_change" data="ja">
+    <input type="button" class="lang_btn" value="ja" />
+    <input type="button" class="lang_btn" value="eng" />
+  </div>
+
   <div id="loadingMessage">🎥 （video streamは）iphoneテスト用です。</div>
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
@@ -81,6 +99,17 @@
           document.body.style.backgroundColor = "";
         }
       }, false);
+
+      //lang
+      var toggleLang = document.getElementsByClassName("lang_btn");
+      var lang_change = document.getElementById("lang_change");
+        console.log(toggleLang);
+      [].forEach.call(document.getElementsByClassName("lang_btn"),function(e){
+        e.addEventListener('click',function() {
+          lang_change.setAttribute("data", this.value);
+        }, false);
+      });
+
   </script>
   <script>
     var video = document.createElement("video");
@@ -91,6 +120,7 @@
     var outputMessage = document.getElementById("outputMessage");
     var outputData = document.getElementById("outputData");
     var outputInfo = document.getElementById("outputInfo");
+    var lang_change = document.getElementById("lang_change");
     var waPlayFlag = true;
     var buffer_data = ["01.mp3", "02.mp3"];
 
@@ -109,8 +139,8 @@
     }
 
     // Use facingMode: environment or user
-    //navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }}).then(function(stream) {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }}).then(function(stream) {
+    //navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }}).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }}).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       video.play();
@@ -152,6 +182,15 @@
 
           var checknum = code.data.split('?id=')[1];
           if(checknum) {
+            if(lang_change.data == 'eng'){
+              waPlayFlag = false;
+              wa.loadFile( 'sound_eng/' + checknum + '.mp3', function(buffer) {
+                wa.play(buffer);
+              });
+              setTimeout(function() {
+                waPlayFlag = true;
+              }, 3000);
+            } else {
               waPlayFlag = false;
               wa.loadFile( 'sound/' + checknum + '.mp3', function(buffer) {
                 wa.play(buffer);
@@ -159,6 +198,7 @@
               setTimeout(function() {
                 waPlayFlag = true;
               }, 3000);
+            }
           }
 
 
