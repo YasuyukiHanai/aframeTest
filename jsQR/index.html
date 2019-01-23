@@ -92,7 +92,7 @@
     var outputData = document.getElementById("outputData");
     var outputInfo = document.getElementById("outputInfo");
     var waPlayFlag = true;
-    var buffer_data = ["./cat_test.mp3", "./dog_test.mp3"];
+    var buffer_data = ["01.mp3", "02.mp3"];
 
     var event = "click";
     document.addEventListener(event, function() {
@@ -140,27 +140,29 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
 
-          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
-            waPlayFlag = false;
-            wa.loadFile(buffer_data[0], function(buffer) {
-              wa.play(buffer);
-            });
-            setTimeout(function() {
-              waPlayFlag = true;
-            }, 3000);
+          // if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
+          //   waPlayFlag = false;
+          //   wa.loadFile( 'sound/' + buffer_data[0], function(buffer) {
+          //     wa.play(buffer);
+          //   });
+          //   setTimeout(function() {
+          //     waPlayFlag = true;
+          //   }, 3000);
+          // }
+
+          var checknum = code.data.split('?id=')[1];
+          if(checknum) {
+              waPlayFlag = false;
+              wa.loadFile( 'sound/' + checknum, function(buffer) {
+                wa.play(buffer);
+              });
+              setTimeout(function() {
+                waPlayFlag = true;
+              }, 3000);
           }
-          if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/dog_test.mp3") {
-            waPlayFlag = false;
-            wa.loadFile(buffer_data[1], function(buffer) {
-              wa.play(buffer);
-              // wa.addEventListener("ended", function() {
-              //   console.log('ended')
-              // });
-            });
-            setTimeout(function() {
-              waPlayFlag = true;
-            }, 3000);
-          }
+
+
+
         }
         // else {
         //   outputMessage.hidden = false;
