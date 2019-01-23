@@ -53,6 +53,12 @@
     #noQRFound {
       text-align: center;
     }
+    #toggle {
+      display: table;
+      margin: .75em auto;
+      width: 50%;
+      text-align: center;
+    }
     #lang_change {
       text-align: center;
     }
@@ -69,11 +75,7 @@
   </style>
 </head>
 <body>
-  <div id="lang_change" data="ja">
-    <input type="button" class="lang_btn" value="ja" />
-    <input type="button" class="lang_btn" value="eng" />
-  </div>
-
+  <input type="button" id="toggle" value="自動ロック解除" />
   <div id="loadingMessage">🎥 （video streamは）iphoneテスト用です。</div>
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
@@ -81,7 +83,10 @@
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
   </div>
-  <input type="button" id="toggle" value="自動ロック解除" />
+  <div id="lang_change" data="ja">
+    <input type="button" class="lang_btn" value="ja" />
+    <input type="button" class="lang_btn" value="eng" />
+  </div>
   <script>
       var noSleep = new NoSleep();
       var wakeLockEnabled = false;
@@ -91,7 +96,7 @@
           noSleep.enable();
           wakeLockEnabled = true;
           toggleEl.value = "自動ロック解除中";
-          document.body.style.backgroundColor = "green";
+          document.body.style.backgroundColor = "#f0f0f0";
         } else {
           noSleep.disable();
           wakeLockEnabled = false;
@@ -182,7 +187,7 @@
 
           var checknum = code.data.split('?id=')[1];
           if(checknum) {
-            if(lang_change.data == 'eng'){
+            if(lang_change.getAttribute('data') == 'eng'){
               waPlayFlag = false;
               wa.loadFile( 'sound_eng/' + checknum + '.mp3', function(buffer) {
                 wa.play(buffer);
