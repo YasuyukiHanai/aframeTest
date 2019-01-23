@@ -76,16 +76,16 @@
 </head>
 <body>
   <input type="button" id="toggle" value="自動ロック解除" />
+  <div id="lang_change" data="ja">
+    <input type="button" class="lang_btn" value="ja" />
+    <input type="button" class="lang_btn" value="eng" />
+  </div>
   <div id="loadingMessage">🎥 （video streamは）iphoneテスト用です。</div>
   <canvas id="canvas" hidden></canvas>
   <div id="output" hidden>
     <div id="outputMessage">No QR code detected.</div>
     <div hidden><b>Data:</b> <span id="outputData"></span></div>
     <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
-  </div>
-  <div id="lang_change" data="ja">
-    <input type="button" class="lang_btn" value="ja" />
-    <input type="button" class="lang_btn" value="eng" />
   </div>
   <script>
       var noSleep = new NoSleep();
