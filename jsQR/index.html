@@ -1,222 +1,69 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>jsQR Demo</title>
-  <script type="text/javascript" async src="./jsQR.js"></script>
-  <script type="text/javascript" src="./wa.js"></script>
-  <script src="./NoSleep.js"></script>
-  <style>
-    body {
-      position: relative;
-      font-family: 'Ropa Sans', sans-serif;
-      color: #333;
-      width: 100%;
-      margin: 0 auto;
-    }
+  <script type="text/javascript" async src="./js/jsQR.js"></script>
+  <script type="text/javascript" src="./js/wa.js"></script>
+  <script type="text/javascript" src="./js/NoSleep.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 
-    #githubLink {
-      position: absolute;
-      right: 0;
-      top: 12px;
-      color: #2D99FF;
-    }
-
-    h1 {
-      margin: 10px 0;
-      font-size: 40px;
-    }
-
-    #loadingMessage {
-      text-align: center;
-      padding: 40px;
-      background-color: #eee;
-    }
-
-    #canvas {
-      width: 100%;
-    }
-
-    #output {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left:  0;
-      background: rgba(255, 255, 255, .85);
-      padding: 10px;
-    }
-
-    #output div {
-      padding-bottom: 10px;
-      word-wrap: break-word;
-    }
-
-    #noQRFound {
-      text-align: center;
-    }
-    #toggle {
-      display: table;
-      text-align: center;
-      font-size: 18px;
-      width: 50%;
-      margin: .75em auto;
-    }
-    #lang_change {
-      text-align: center;
-    }
-    #lang_change .lang_btn {
-      display: inline-block;
-      width: 15%;
-      font-size: 18px;
-    }
-    #lang_change[data="ja"] input[value="ja"] {
-      background: #f00;
-    }
-    #lang_change[data="eng"] input[value="eng"] {
-      background: #f00;
-    }
-  </style>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-133171176-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-133171176-1');
+</script>
 </head>
 <body>
-  <input type="button" id="toggle" value="自動ロック解除" />
-  <div id="lang_change" data="ja">
-    <input type="button" class="lang_btn" value="ja" />
-    <input type="button" class="lang_btn" value="eng" />
+  <div class="wrap">
+    <button id="toggle" class="lock_btn" value="自動ロック解除">
+    <span class="lock_btn_dummy"><img src="./img/b1.svg" width="232" height="232" alt="はじめる!"></span>
+    <span class="lock_btn_word1"><img src="./img/t1.svg" width="1067" height="275" alt=""></span>
+    <span class="lock_btn_word2"><img src="./img/t2.svg" width="956" height="679" alt=""></span>
+    </button>
+    <div id="lang_change" data="ja">
+      <button class="lang_btn" value="ja">なきごえ
+        <span class="lang_btn__inner">
+          <span class="lang_btn__blobs">
+            <span class="lang_btn__blob"></span>
+            <span class="lang_btn__blob"></span>
+            <span class="lang_btn__blob"></span>
+            <span class="lang_btn__blob"></span>
+          </span>
+        </span>
+      </button>
+      <button class="lang_btn" value="eng">えいご
+        <span class="lang_btn__inner">
+          <span class="lang_btn__blobs">
+            <span class="lang_btn__blob"></span>
+            <span class="lang_btn__blob"></span>
+            <span class="lang_btn__blob"></span>
+            <span class="lang_btn__blob"></span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div id="loadingMessage">🎥 （video streamは）iphoneテスト用です。</div>
+    <div class="canvas-wrap"><canvas id="canvas" hidden></canvas></div>
+    <div id="output" hidden>
+      <div id="outputMessage">No QR code detected.</div>
+      <div hidden><b>Data:</b> <span id="outputData"></span></div>
+      <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
+    </div>
   </div>
-  <div id="loadingMessage">🎥 （video streamは）iphoneテスト用です。</div>
-  <canvas id="canvas" hidden></canvas>
-  <div id="output" hidden>
-    <div id="outputMessage">No QR code detected.</div>
-    <div hidden><b>Data:</b> <span id="outputData"></span></div>
-    <div hidden><b>Code:</b> <span id="outputInfo"></span></div>
-  </div>
-  <script>
-      var noSleep = new NoSleep();
-      var wakeLockEnabled = false;
-      var toggleEl = document.querySelector("#toggle");
-      toggleEl.addEventListener('click', function() {
-        if (!wakeLockEnabled) {
-          noSleep.enable();
-          wakeLockEnabled = true;
-          toggleEl.value = "自動ロック解除中";
-          document.body.style.backgroundColor = "#f0f0f0";
-        } else {
-          noSleep.disable();
-          wakeLockEnabled = false;
-          toggleEl.value = "自動ロック解除オフ";
-          document.body.style.backgroundColor = "";
-        }
-      }, false);
-
-      //lang
-      var toggleLang = document.getElementsByClassName("lang_btn");
-      var lang_change = document.getElementById("lang_change");
-      [].forEach.call(document.getElementsByClassName("lang_btn"),function(e){
-        e.addEventListener('click',function() {
-          lang_change.setAttribute("data", this.value);
-        }, false);
-      });
-
-  </script>
-  <script>
-    var video = document.createElement("video");
-    var canvasElement = document.getElementById("canvas");
-    var canvas = canvasElement.getContext("2d");
-    var loadingMessage = document.getElementById("loadingMessage");
-    var outputContainer = document.getElementById("output");
-    var outputMessage = document.getElementById("outputMessage");
-    var outputData = document.getElementById("outputData");
-    var outputInfo = document.getElementById("outputInfo");
-    var lang_change = document.getElementById("lang_change");
-    var waPlayFlag = true;
-    var buffer_data = ["01.mp3", "02.mp3"];
-
-    var event = "click";
-    document.addEventListener(event, function() {
-      wa.playSilent();
-    });
-
-    function drawLine(begin, end, color) {
-      canvas.beginPath();
-      canvas.moveTo(begin.x, begin.y);
-      canvas.lineTo(end.x, end.y);
-      canvas.lineWidth = 4;
-      canvas.strokeStyle = color;
-      canvas.stroke();
-    }
-
-    // Use facingMode: environment or user
-    //navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }}).then(function(stream) {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }}).then(function(stream) {
-      video.srcObject = stream;
-      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-      video.play();
-      requestAnimationFrame(tick);
-    });
-
-    function tick() {
-      loadingMessage.innerText = "⌛ Loading video..."
-      if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        loadingMessage.hidden = true;
-        canvasElement.hidden = false;
-        outputContainer.hidden = false;
-
-        canvasElement.height = video.videoHeight;
-        canvasElement.width = video.videoWidth;
-        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-        var code = jsQR(imageData.data, imageData.width, imageData.height, {
-          inversionAttempts: "dontInvert",
-        });
-        if (code && waPlayFlag == true) {
-          drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
-          drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
-          drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
-          drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-          outputMessage.hidden = true;
-          outputData.parentElement.hidden = false;
-          outputData.innerText = code.data;
-
-          // if(code.data == "https://yasuyukihanai.github.io/aframeTest/jsQR/cat_test.mp3") {
-          //   waPlayFlag = false;
-          //   wa.loadFile( 'sound/' + buffer_data[0], function(buffer) {
-          //     wa.play(buffer);
-          //   });
-          //   setTimeout(function() {
-          //     waPlayFlag = true;
-          //   }, 3000);
-          // }
-
-          var checknum = code.data.split('?id=')[1];
-          if(checknum) {
-            if(lang_change.getAttribute('data') == 'eng'){
-              waPlayFlag = false;
-              wa.loadFile( 'sound_eng/' + checknum + '.mp3', function(buffer) {
-                wa.play(buffer);
-              });
-              setTimeout(function() {
-                waPlayFlag = true;
-              }, 3000);
-            } else {
-              waPlayFlag = false;
-              wa.loadFile( 'sound/' + checknum + '.mp3', function(buffer) {
-                wa.play(buffer);
-              });
-              setTimeout(function() {
-                waPlayFlag = true;
-              }, 3000);
-            }
-          }
-
-
-
-        }
-        // else {
-        //   outputMessage.hidden = false;
-        //   outputData.parentElement.hidden = true;
-        // }
-      }
-      requestAnimationFrame(tick);
-    }
-  </script>
 </body>
+<script type="text/javascript" src="./js/app.js"></script>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 21 -7" result="goo"></feColorMatrix>
+      <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+    </filter>
+  </defs>
+</svg>
 </html>
