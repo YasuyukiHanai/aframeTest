@@ -413,7 +413,8 @@ h1 {
   }
   .canvas-wrap #canvas {
     width: auto;
-    min-height: 100%;
+    height: 62.5vh;
+    min-height: 240px;
     -ms-transform: translateX(-50%);
         transform: translateX(-50%);
     margin-left: 50%;
