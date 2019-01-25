@@ -95,7 +95,7 @@ body {
   color: #333;
   background: #8b84ff;
   width: 100%;
-  min-height: 600px;
+  min-height: 720px;
   margin: 0 auto;
 }
 
@@ -214,10 +214,12 @@ h1 {
 }
 
 .lock_btn_word1 {
+  width: 54%;
   top: 150px;
 }
 
 .lock_btn_word2 {
+  width: 54%;
   max-width: 500px;
   bottom: 20%;
 }
@@ -388,7 +390,7 @@ h1 {
   .lang_btn:hover .lang_btn__blob,
   #lang_change[data="ja"] .lang_btn[value="ja"] .lang_btn__blob,
   #lang_change[data="eng"] .lang_btn[value="eng"] .lang_btn__blob {
-    transform: translateZ(0) scale(1.4);
+    transform: translateZ(0) scale(1.7);
   }
 }
 
@@ -412,14 +414,15 @@ h1 {
   .canvas-wrap #canvas {
     width: 70%;
     height: 100%;
+    max-height: 480px;
   }
   .lock_btn_dummy {
     -ms-transform: rotate(-15deg);
         transform: rotate(-15deg);
     left: -13px;
-    bottom: -10px;
+    bottom: -15px;
     margin: 0;
-    max-width: 35%;
+    max-width: 25%;
     padding: 8%;
   }
   .lock_btn_word1 {
@@ -427,7 +430,8 @@ h1 {
     top: 15%;
   }
   .lock_btn_word2 {
-    width: 67%;
-    top: 30%;
+    width: 58%;
+    top: 41.5%;
+    top: 52vw;
   }
 }
