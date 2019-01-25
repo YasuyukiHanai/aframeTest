@@ -412,9 +412,17 @@ h1 {
     background-size: 100% auto;
   }
   .canvas-wrap #canvas {
+    width: auto;
+    min-height: 100%;
+    -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+    margin-left: 50%;
+  }
+  .canvas-wrap .canvas-inner {
+    overflow: hidden;
     width: 70%;
-    height: 100%;
     max-height: 480px;
+    margin: auto;
   }
   .lock_btn_dummy {
     -ms-transform: rotate(-15deg);
@@ -427,11 +435,11 @@ h1 {
   }
   .lock_btn_word1 {
     width: 78%;
-    top: 15%;
+    top: 17.5%;
   }
   .lock_btn_word2 {
     width: 58%;
-    top: 41.5%;
-    top: 52vw;
+    top: 30%;
+    top: 58vw;
   }
 }
