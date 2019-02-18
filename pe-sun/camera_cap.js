@@ -10,8 +10,8 @@
           var video = document.getElementsByTagName('video')[0];
 
           if (scene && video) {
-            width = scene.offsetWidth;
-            height = scene.offsetHeight;
+            width = video.videoWidth;
+            height = video.videoHeight;
 
             // スクリーンショット用のcanvasを作成
             var snapshot = document.createElement('canvas');
@@ -20,13 +20,25 @@
             var context = snapshot.getContext('2d');
 
             // カメラの映像をsnapshotに描画
-            context.drawImage(video, 0, 0, video.offsetWidth, video.offsetHeight);
+            context.drawImage(video, 0, 0, width, height);
 
             // A-Frameの映像をsnapshotに描画
             // components.screenshotの大きさを現在のwidthとheightに指定
             scene.setAttribute('screenshot', 'width:' + width + '; height: ' + height + ';');
             var capture = scene.components.screenshot.getCanvas('perspective');
-            context.drawImage(capture, 0, 0, width, height);
+            //context.drawImage(capture, 0, 0, width, height);
+
+            if (video.offsetWidth > video.offsetHeight) {
+                context.drawImage(capture, 0, 0, width, height);
+                //resizedContext.drawImage(aScene, 0, 0, width, height);
+            } else {
+                var scale = height / width;
+                var scaledWidth = height * scale;
+                var marginLeft = (width - scaledWidth) / 2;
+                context.drawImage(capture, marginLeft, 0, scaledWidth, height);
+            }
+
+
 
             // jpgに変換してダウンロードさせる
             // var a = document.createElement('a');
