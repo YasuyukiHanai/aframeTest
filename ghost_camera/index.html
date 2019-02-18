@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>aframeTest</title>
+</head>
+<body style="margin:0px; overflow:hidden;">
+  <script src="camera_bg.js"></script>
+  <script src="camera_cap.js"></script>
+<style type="text/css">
+#ghost {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  z-index: -2;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+#capture {
+  position: absolute;
+  z-index: 1;
+  right: 5%;
+  display: inline-block;
+  bottom: 2.5%;
+  width: 15%;
+  max-width: 100px;
+}
+#capture_result {
+  position: absolute;
+  z-index: 1;
+  left: 5%;
+  display: inline-block;
+  bottom: 2.5%;
+  width: 15%;
+  max-width: 100px;
+  text-align: center;
+}
+#capture img {
+  max-width: 100%;
+  height: auto;
+}
+#capture_result img {
+  opacity: 0;
+  max-width: 100%;
+  height: auto;
+}
+#capture_result.is-captured img {
+  opacity: 1;
+}
+</style>
+  <canvas id="ghost"></canvas>
+  <a id="capture" href="javascript:void(0);"><img src="camera-icon.png" alt=""></a>
+  <div id="capture_result"><img id="capture_result_img" src="" alt=""></div>
+  <video id="camera-bg" autoplay muted playsinline style="position: absolute; top: 0; left: 0; z-index: -2;"></video>
+</body>
+</html>
