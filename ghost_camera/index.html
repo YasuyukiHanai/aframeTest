@@ -46,17 +46,27 @@
   height: auto;
 }
 #capture_result img {
-  opacity: 0;
   max-width: 100%;
   height: auto;
 }
-#capture_result.is-captured img {
+#capture_result.is-captured #capture_result_dummy {
   opacity: 1;
+}
+#capture_result_dummy {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+#capture_result_img {
+  opacity: 0;
 }
 </style>
   <canvas id="ghost"></canvas>
   <a id="capture" href="javascript:void(0);"><img src="camera-icon.png" alt=""></a>
-  <div id="capture_result"><img id="capture_result_img" src="" alt=""></div>
+  <div id="capture_result">
+    <img id="capture_result_dummy" src="" alt="">
+    <img id="capture_result_img" src="" alt="">
+  </div>
   <video id="camera-bg" autoplay muted playsinline style="position: absolute; top: 0; left: 0; z-index: -2;"></video>
 </body>
 </html>

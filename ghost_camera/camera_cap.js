@@ -18,11 +18,15 @@
             snapshot.width = width;
             snapshot.height = height;
             var context = snapshot.getContext('2d');
+            // ダミー用
+            var snapshotB = document.createElement('canvas');
+            snapshotB.width = width;
+            snapshotB.height = height;
+            var contextB = snapshotB.getContext('2d');
 
             // カメラの映像をsnapshotに描画
             context.drawImage(video, 0, 0, width, height);
-
-            var contextdummy = context.drawImage(video, 0, 0, width, height);
+            var contextdummy = contextB.drawImage(video, 0, 0, width, height);
 
             // A-Frameの映像をsnapshotに描画
             // components.screenshotの大きさを現在のwidthとheightに指定
@@ -50,8 +54,12 @@
 var imageType = "image/png";
 var fileName = "camera.png";
 var base64 = snapshot.toDataURL(imageType);
+var base64_dummy = snapshotB.toDataURL(imageType);
 var blob = Base64toBlob(base64);
+
 saveBlob(blob, fileName);
+document.getElementById("capture_result_dummy").src = base64_dummy;
+
 function Base64toBlob(base64){
     var tmp = base64.split(',');
     var data = atob(tmp[1]);
@@ -63,6 +71,7 @@ function Base64toBlob(base64){
     var blob = new Blob([buf], { type: mime });
     return blob;
 }
+
 function saveBlob(blob, fileName){
     var url = (window.URL || window.webkitURL);
     var dataUrl = url.createObjectURL(blob);
