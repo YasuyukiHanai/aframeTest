@@ -37,9 +37,11 @@
   left: 5%;
   display: inline-block;
   bottom: 2.5%;
-  width: 15%;
-  max-width: 100px;
+  width: 45%;
+  max-width: 200px;
   text-align: center;
+  box-sizing: border-box;
+  font-size: 0;
 }
 #capture img {
   max-width: 100%;
@@ -48,6 +50,10 @@
 #capture_result img {
   max-width: 100%;
   height: auto;
+}
+#capture_result.is-captured {
+  border: 5px solid #fff;
+  box-shadow: -3px 3px 7px 0px #0000005c;
 }
 #capture_result.is-captured #capture_result_dummy {
   opacity: 1;
