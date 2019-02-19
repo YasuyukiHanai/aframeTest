@@ -1,24 +1,4 @@
   document.onreadystatechange = function () {
-        var canvas = document.getElementById('ghost');
-        if (canvas.getContext){
-            var ctx = canvas.getContext('2d');
-            //全体の透明度
-            ctx.globalAlpha = 0.3;
-            //1000回処理をくりかえす
-            for(i = 0; i < 1000; i++){
-                ctx.beginPath();
-                //ランダムな色を生成
-                var r = Math.floor(Math.random() * 256);
-                var g = Math.floor(Math.random() * 256);
-                var b = Math.floor(Math.random() * 256);
-                ctx.strokeStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
-                //ランダムな場所に始点を移動
-                ctx.moveTo(Math.random()*400, Math.random()*300);
-                //ランダムな場所まで線を描く
-                ctx.lineTo(Math.random()*400, Math.random()*300);
-                ctx.stroke();
-            }
-        }
     if (document.readyState === "complete") {
       ready();
     }
@@ -41,6 +21,8 @@
 
             // カメラの映像をsnapshotに描画
             context.drawImage(video, 0, 0, width, height);
+
+            var contextdummy = context.drawImage(video, 0, 0, width, height);
 
             // A-Frameの映像をsnapshotに描画
             // components.screenshotの大きさを現在のwidthとheightに指定
