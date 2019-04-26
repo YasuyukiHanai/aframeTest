@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aframeTest</title>
+</head>
+<body style="margin:0px; overflow:hidden;">
+  <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script>
+  <script src="camera_cap.js"></script>
+<style type="text/css">
+.a-canvas {
+  max-width: 100%;
+  height: auto;
+}
+#capture {
+  position: absolute;
+  z-index: 1;
+  right: 5%;
+  display: inline-block;
+  bottom: 2.5%;
+  width: 15%;
+  max-width: 100px;
+}
+#capture_result {
+  position: absolute;
+  z-index: 1;
+  left: 5%;
+  display: inline-block;
+  bottom: 2.5%;
+  width: 15%;
+  max-width: 100px;
+  text-align: center;
+}
+#capture img {
+  max-width: 100%;
+  height: auto;
+}
+#capture_result img {
+  opacity: 0;
+  max-width: 100%;
+  height: auto;
+}
+#capture_result.is-captured img {
+  opacity: 1;
+}
+</style>
+
+  <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+  <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;patternRatio:0.60;">
+
+    <!-- マーカーを登録 -->
+    <a-marker preset="custom" type="pattern" url="./pattern-marker.patt">
+      <a-image id="test1" src="./001.gif" position="0 0 0" rotation="-30 0 0" width="" height="" opacity="1" transparent="true" alpha-test="" shader="standard" scale="3 3 3" visible="" material="shader:gif;src:url(./001.gif);" gif="" geometry="">
+      </a-image>
+    </a-marker>
+
+
+    <!-- AR用のカメラを置く -->
+    <!-- <a-sky src="Face_04.png" material="" geometry=""></a-sky> -->
+    <!-- AR用のカメラを置く -->
+    <a-entity camera></a-entity>
+  </a-scene>
+  <a id="capture" href="javascript:void(0);"><img src="camera-icon.png" alt=""></a>
+  <div id="capture_result">
+    <div class="capture_result_icon"><img src="camera-cap.png" alt=""></div>
+    <img id="capture_result_img" src="" alt="">
+  </div>
+</body>
+</html>
