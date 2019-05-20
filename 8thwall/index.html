@@ -60,6 +60,19 @@
       <a-image src="home.jpg" geometry="primitive: plane; height: 0.8; width: 1.02;"></a-image>
     </a-entity>
 
+    <a-entity xrextras-named-image-target="name: AR_image04">
+      <!-- Add a child entity that can be rotated independently of the image target. -->
+      <a-entity xrextras-one-finger-rotate gltf-model="#home-model" scale="0.1 0.1 0.1" rotation="15 0 0" position="0 -0.35 0"></a-entity>
+    </a-entity>
+    <a-entity
+      xrextras-named-image-target="name: AR_image05"
+      xrextras-play-video="video: #home-video; thumb: #home-thumb; canstop: true"
+      geometry="primitive: plane; height: 0.8; width: 1.02;">
+    </a-entity>
+    <a-entity xrextras-named-image-target="name: AR_image06">
+      <a-image src="home.jpg" geometry="primitive: plane; height: 0.8; width: 1.02;"></a-image>
+    </a-entity>
+
 
   </a-scene>
 
