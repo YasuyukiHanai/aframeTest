@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>aframeTest</title>
+<script src="js/camera_bg.js"></script>
+<script src="js/CCapture.all.min.js"></script>
+<script src="js/camera_cap.js"></script>
+<link rel="stylesheet" href="css/page.css">
+</head>
+<body>
+
+<div class="camArea">
+    <div id="capture_convert" class="camArea__convert"><div class="camArea__convert__loader">Loading...</div></div>
+    <canvas id="screen" class="screen"></canvas>
+    <a id="capture" href="javascript:void(0);"><img src="img/icon_cam.svg" width="116" height="116" alt=""></a>
+    <a id="flipBtn" href="javascript:void(0);"><img src="img/icon_switch.svg" width="116" height="116" alt=""></a>
+    <div id="capture_result">
+        <div id="capture_result_inner">
+            <div id="result_close" class="capture_result_close"></div>
+            <div class="capture_result_icon">画像を長押しして保存してね！</div>
+            <div class="capture_result__img">
+                <img id="capture_result_img" src="" alt="">
+            </div>
+            <p class="footer__shareWords"><img src="img/title_share.svg" width="128" height="38" alt="SHARE"></p>
+            <ul class="footer__shareList">
+            <li class="footer__shareList__item"><a href="https://www.instagram.com/bbmedia_techpla/" target="_blank"><img src="img/icon_insta_b.svg" width="100" height="100" alt=""></a></li>
+            <li class="footer__shareList__item"><a href="https://twitter.com/bbmedia_" target="_blank"><img src="img/icon_twitter_b.svg" width="100" height="100" alt="twitter"></a></li>
+            </ul>
+        </div>
+    </div>
+    <video id="camera-bg" autoplay muted playsinline style="top: 0; left: 0; z-index: -2;"></video>
+</div>
+<footer class="footer">
+    <p class="footer__shareWords"><img src="img/title_share.svg" width="128" height="38" alt="SHARE"></p>
+    <ul class="footer__shareList">
+    <li class="footer__shareList__item"><a href="https://www.instagram.com/bbmedia_techpla/" target="_blank"><img src="img/icon_insta_b.svg" width="100" height="100" alt=""></a></li>
+    <li class="footer__shareList__item"><a href="https://twitter.com/bbmedia_" target="_blank"><img src="img/icon_twitter_b.svg" width="100" height="100" alt="twitter"></a></li>
+    </ul>
+</footer>
+</body>
+<script src="js/gif_loader.js"></script>
+</html>
