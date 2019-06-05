@@ -24,4 +24,4 @@ function onDrawFrame(ctx, frame) {
   frames++;
 }
 
-gifler('/cosmeticpress/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
+gifler('/aframeTest/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
