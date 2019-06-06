@@ -2,13 +2,6 @@
 // quated from AR.js
 // https://raw.githubusercontent.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js
 window.addEventListener('load', function() {
-
-// setTimeout(function() {
-//   var a = document.documentElement;
-//   var y = a.scrollHeight - a.clientHeight;
-//   window.scrollTo(0, y);}
-// ,10);
-
   // check API is available
     if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices || !navigator.mediaDevices.getUserMedia) {
     var fctName = '';
