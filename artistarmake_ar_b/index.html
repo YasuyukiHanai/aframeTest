@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aframeTest</title>
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+<!-- <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script> -->
+<!-- <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script> -->
+<script src="camera_cap.js"></script>
+<link rel="stylesheet" href="page.css">
+</head>
+<body>
+  <div class="wrap">
+    <div id="capture_flash"></div>
+    <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
+    <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;patternRatio:0.70;">
+    <a-assets>
+        <img id="test1" src="./ar_image_1.jpg">
+        <img id="test2" src="./ar_image_2.jpg">
+        <img id="test3" src="./ar_image_3.jpg">
+        <img id="test4" src="./ar_image_4.png">
+    </a-assets>
+      <!-- マーカーを登録 -->
+      <a-marker preset="custom" type="pattern" url="./pattern-marker.patt">
+        <a-image src="#test1" position="0 0 0" rotation="-90 0 0" scale="3 3 3" transparent="true" alpha-test=""></a-image>
+        <a-image src="#test3" position="-2.5 -.5 -2.8" rotation="-90 0 0" scale="3 3 3" transparent="true" alpha-test=""></a-image>
+        <a-image src="#test2" position="2.5 -.9 2.8" rotation="-90 0 0" scale="3 3 3" transparent="true" alpha-test=""></a-image>
+        <a-image src="#test4" position="-1 -1.2 0" rotation="-90 0 0" scale="10 10 10" transparent="true" alpha-test=""></a-image>
+      </a-marker>
+
+
+      <!-- AR用のカメラを置く -->
+      <!-- <a-sky src="Face_04.png" material="" geometry=""></a-sky> -->
+      <!-- AR用のカメラを置く -->
+      <a-entity camera></a-entity>
+    </a-scene>
+    <a id="capture" href="javascript:void(0);"><img src="icon_cam.svg" width="116" height="116" alt=""></a>
+    <div id="capture_result">
+        <div id="capture_result_inner">
+            <div id="result_close" class="capture_result_close"></div>
+            <div class="capture_result_icon">画像を長押しして保存してね！</div>
+            <div class="capture_result__img">
+                <img id="capture_result_img" src="" alt="">
+            </div>
+            <p class="footer__shareWords"><img src="title_share.svg" width="128" height="38" alt="SHARE"></p>
+            <ul class="footer__shareList">
+            <li class="footer__shareList__item"><a href="https://www.instagram.com/bbmedia_techpla/" target="_blank"><img src="icon_insta_b.svg" width="100" height="100" alt=""></a></li>
+            <li class="footer__shareList__item"><a href="https://twitter.com/bbmedia_" target="_blank"><img src="icon_twitter_b.svg" width="100" height="100" alt="twitter"></a></li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
