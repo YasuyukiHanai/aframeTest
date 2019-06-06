@@ -16,7 +16,7 @@
               framerate: 12,
               verbose: true,
               name: 01,
-              workersPath: '/aframeTest/artistarmake_frame1/js/',
+              workersPath: '/aframeTest/artistarmake_frame2/js/',
               timeLimit: 2
             });
 
@@ -60,7 +60,7 @@ function render(){
       var scale = height / width;
       var scaledWidth = height * scale;
       var marginLeft = (width - scaledWidth) / 2;
-      context.drawImage(scene, marginLeft+(scaledWidth*.22), 0, (scaledWidth*.57), height);
+      context.drawImage(scene, marginLeft+(scaledWidth*.215), -1, (scaledWidth*.57), height+1);
   }
   capturer.capture( snapshot );
 }
@@ -75,7 +75,7 @@ setTimeout(function() {
       console.log(blob)
       reader.readAsDataURL(blob);
       reader.addEventListener("load", function () {
-        gifler('/aframeTest/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
+        gifler('/aframeTest/artistarmake_frame2/img/gif.gif').animate('canvas.screen', onDrawFrame);
         document.getElementById("capture_convert").classList.remove("is-convert");
         document.getElementById("capture_result_img").src = reader.result;
         document.getElementById("capture_result").classList.add("is-captured");
@@ -83,7 +83,7 @@ setTimeout(function() {
 
     }
   );
-}, 1600);
+}, 1200);
 
             // jpgに変換してダウンロードさせる
             // var a = document.createElement('a');
