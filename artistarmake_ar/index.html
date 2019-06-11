@@ -1,27 +1,94 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122581901-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-122581901-1');
+</script>
 <meta charset="utf-8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>aframeTest</title>
-<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+<title>artistarmake_ar｜コスメティックプレス(COSMETIC PRESS)｜資生堂</title>
+<meta name="copyright" content="Shiseido Co., Ltd. All rights reserved.">
+<!-- ogp -->
+<meta property="og:site_name" content="資生堂">
+<meta property="og:title" content="コスメティックプレス(COSMETIC PRESS)｜資生堂">
+<meta property="og:description" content="トレンドをいち早くつかまえ、期間限定アイテムとしてカタチにするプロジェクト。今その時だけしか出会えないコスメやサービスたちはトレンドの熱が高まったときに登場。買い損ねたら2度と出会えないかも…！？ぜひチェックしてみて！">
+<meta property="og:url" content="http://www.shiseido.co.jp/cosmeticpress/">
+<meta property="og:image" content="http://www.shiseido.co.jp/cosmeticpress/og.jpg">
+<meta property="og:type" content="article">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+
+<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.1/aframe/build/aframe-ar.js"></script>
 <!-- <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script> -->
 <!-- <script src="https://rawgit.com/mayognaise/aframe-gif-component/master/dist/aframe-gif-component.min.js"></script> -->
 <script src="camera_cap.js"></script>
 <link rel="stylesheet" href="page.css">
+<script>
+  AFRAME.registerComponent('ar-scene', {
+    init: function () {
+      var el = document.querySelectorAll('.animImg');
+      count = -1;
+        var interval = function(){
+          count++;
+          if (count == 2) count = 0;
+          el.forEach(function(value){
+            // console.log(value.getAttribute('src'));
+            value.setAttribute('src', value.getAttribute('src').slice(0, 9)+(count+1));
+          });
+        }
+        setInterval(interval, 2500);
+    }
+  });
+</script>
 </head>
 <body>
   <div class="wrap">
     <div id="capture_flash"></div>
     <!-- A-Frame の VR空間に AR.js を紐づける（デバッグUIを非表示） -->
-    <a-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;patternRatio:0.70;">
-
+    <a-scene ar-scene embedded vr-mode-ui="enabled: false" arjs="trackingMethod:best; debugUIEnabled:false;patternRatio:0.60;">
+    <a-assets>
+        <img id="img_a_1" src="./img/ARgallery_02_1.png">
+        <img id="img_a_2" src="./img/ARgallery_02_2.png">
+        <img id="img_a_3_1" src="./img/ARgallery_02_3-1.png">
+        <img id="img_a_3_2" src="./img/ARgallery_02_3-2.png">
+        <img id="img_a_4" src="./img/ARgallery_02_4.png">
+        <img id="img_b_1" src="./img/ARgallery_03_1.png">
+        <img id="img_b_2" src="./img/ARgallery_03_2.png">
+        <img id="img_b_3_1" src="./img/ARgallery_03_3-1.png">
+        <img id="img_b_3_2" src="./img/ARgallery_03_3-2.png">
+        <img id="img_b_4" src="./img/ARgallery_03_4.png">
+        <img id="img_c_1" src="./img/ARgallery_04_1.png">
+        <img id="img_c_2" src="./img/ARgallery_04_2.png">
+        <img id="img_c_3_1" src="./img/ARgallery_04_3-1.png">
+        <img id="img_c_3_2" src="./img/ARgallery_04_3-2.png">
+        <img id="img_c_4" src="./img/ARgallery_04_4.png">
+    </a-assets>
       <!-- マーカーを登録 -->
       <a-marker preset="custom" type="pattern" url="./pattern-marker.patt">
-        <a-image id="test1" src="./ar_image.png" position="0 0 0" rotation="-90 0 0" scale="4 4 4" width="" height="" opacity="1" transparent="true" alpha-test="">
-        </a-image>
+        <a-image src="#img_a_4" position="-0.25 -3 -0.5" rotation="-90 0 0" scale="4.2 3.2 3.2" transparent="true" alpha-test=""></a-image>
+        <a-image class="animImg" src="#img_a_3_2" position="0 -1.2 0" rotation="-90 0 0" scale="1.5 1.5 1.5" transparent="true" alpha-test=""></a-image>
+        <!-- <a-image src="#img_a_3_1" position="0 -1.2 0" rotation="-90 0 0" scale="1.5 1.5 1.5" transparent="true" alpha-test="" animation="property: position; from: 0 -1.2 0; to: 0 -1.4 0; dur: 1000; startEvents: str; dir: alternate;"></a-image> -->
+        <a-image src="#img_a_2" position="0.1 .35 -0.1" rotation="-90 0 0" scale="2 2 2" transparent="true" alpha-test=""></a-image>
+        <a-image src="#img_a_1" position="0 1 0" rotation="-90 0 0" scale="2 2 2" transparent="true" alpha-test=""></a-image>
+      </a-marker>
+      <a-marker preset="custom" type="pattern" url="./pattern-marker_b.patt">
+        <a-image src="#img_b_4" position="-0.25 -3 -0.15" rotation="-90 0 0" scale="4.2 3.2 3.2" transparent="true" alpha-test=""></a-image>
+        <a-image class="animImg" src="#img_b_3_2" position="0 -1.2 0" rotation="-90 0 0" scale="1.5 1.5 1.5" transparent="true" alpha-test=""></a-image>
+        <a-image src="#img_b_2" position="0.1 .35 -0.1" rotation="-90 0 0" scale="2 2 2" transparent="true" alpha-test=""></a-image>
+        <a-image src="#img_b_1" position="0 1 0.1" rotation="-90 0 0" scale="2 2 2" transparent="true" alpha-test=""></a-image>
+      </a-marker>
+      <a-marker preset="custom" type="pattern" url="./pattern-marker_c.patt">
+        <a-image src="#img_c_4" position="0.75 -3 -0.1" rotation="-90 0 0" scale="3.2 3.2 3.2" transparent="true" alpha-test=""></a-image>
+        <a-image class="animImg" src="#img_c_3_2" position="0 -1.2 0" rotation="-90 0 0" scale="1.5 1.5 1.5" transparent="true" alpha-test=""></a-image>
+        <a-image src="#img_c_2" position="0.1 .35 -0.1" rotation="-90 0 0" scale="2 2 2" transparent="true" alpha-test=""></a-image>
+        <a-image src="#img_c_1" position="0 1 0.1" rotation="-90 0 0" scale="2 2 2" transparent="true" alpha-test=""></a-image>
       </a-marker>
 
 
@@ -30,18 +97,18 @@
       <!-- AR用のカメラを置く -->
       <a-entity camera></a-entity>
     </a-scene>
-    <a id="capture" href="javascript:void(0);"><img src="icon_cam.svg" width="116" height="116" alt=""></a>
+    <a id="capture" href="javascript:void(0);"><img src="./img/icon_cam.svg" width="116" height="116" alt=""></a>
     <div id="capture_result">
         <div id="capture_result_inner">
             <div id="result_close" class="capture_result_close"></div>
-            <div class="capture_result_icon">画像を長押しして保存してね！</div>
+            <div class="capture_result_icon">画像を長押しして保存！シェアしてね！</div>
             <div class="capture_result__img">
                 <img id="capture_result_img" src="" alt="">
             </div>
-            <p class="footer__shareWords"><img src="title_share.svg" width="128" height="38" alt="SHARE"></p>
+            <p class="footer__shareWords"><img src="./img/title_share.svg" width="128" height="38" alt="SHARE"></p>
             <ul class="footer__shareList">
-            <li class="footer__shareList__item"><a href="https://www.instagram.com/bbmedia_techpla/" target="_blank"><img src="icon_insta_b.svg" width="100" height="100" alt=""></a></li>
-            <li class="footer__shareList__item"><a href="https://twitter.com/bbmedia_" target="_blank"><img src="icon_twitter_b.svg" width="100" height="100" alt="twitter"></a></li>
+              <li class="footer__shareList__item"><a href="https://www.instagram.com/cosmeticpress/" target="_blank" onclick="ga('send', 'event', 'category', 'action', 'label', value, {'nonInteraction': 1});"><img src="./img/icon_insta_b.svg" width="100" height="100" alt=""></a></li>
+              <li class="footer__shareList__item"><a href="https://twitter.com/cosmeticpress" target="_blank"><img src="./img/icon_twitter_b.svg" width="100" height="100" alt="twitter"></a></li>
             </ul>
         </div>
     </div>

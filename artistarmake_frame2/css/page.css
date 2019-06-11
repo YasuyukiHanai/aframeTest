@@ -276,7 +276,7 @@ body img {
     box-sizing: border-box;
     font-size: 0;
     opacity: 0;
-    background: url("/aframeTest/artistarmake_frame2/img/bg.png");
+    background: url("/cosmeticpress/artistarmake_frame1/img/bg.png");
     padding: 5.33333% 0;
     transition: opacity 700ms ease-out, -webkit-transform 300ms ease-out;
     transition: opacity 700ms ease-out, transform 300ms ease-out;
@@ -306,15 +306,15 @@ body img {
 .capture_result_icon {
     position: relative;
     display: block;
-    font-size: 4vw;
+    font-size: 3.85vw;
     line-height: 1;
     margin: 0 auto;
 }
 
 .capture_result_close {
     position: absolute;
-    top: 2.66667%;
-    right: 10.66667%;
+    top: 2%;
+    right: 8%;
     z-index: 10;
     height: 6.5vw;
     max-height: 30px;
@@ -447,13 +447,13 @@ body img {
     position: relative;
     z-index: 3;
     text-align: center;
-    background: url("/aframeTest/artistarmake_frame2/img/bg.png");
+    background: url("/cosmeticpress/artistarmake_frame1/img/bg.png");
     padding: 6.66667% 0;
 }
 
 .footer__shareWords {
     display: inline-block;
-    width: 11.33333%;
+    width: 40%;
     margin-bottom: 2.66667%;
 }
 

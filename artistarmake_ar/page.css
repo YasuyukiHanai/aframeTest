@@ -80,7 +80,7 @@ body > video {
     box-sizing: border-box;
     font-size: 0;
     opacity: 0;
-    background: url("./bg.png");
+    background: url("./img/bg.png");
     width: 100%;
     padding: 5.33333% 0;
     transition: opacity 700ms ease-out, -webkit-transform 300ms ease-out;
@@ -230,7 +230,7 @@ body > video {
 
 .footer__shareWords {
     display: inline-block;
-    width: 11.33333%;
+    width: 40%;
     margin-bottom: 2.66667%;
 }
 

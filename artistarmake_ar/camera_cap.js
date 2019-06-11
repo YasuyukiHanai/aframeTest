@@ -8,6 +8,7 @@
     document.getElementById("capture").onclick = function() {
           var scene = document.querySelector('a-scene');
           var video = document.getElementsByTagName('video')[0];
+          document.getElementById("capture_flash").classList.add("is-capStart");
 
           if (scene && video) {
             width = video.videoWidth;
