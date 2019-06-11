@@ -5,10 +5,9 @@
   }
 
   function ready() {
-    document.getElementById("capture").onclick = function() {
+    document.getElementById("capture").addEventListener("click", function(e){
           var scene = document.querySelector('a-scene');
           var video = document.getElementsByTagName('video')[0];
-          document.getElementById("capture_flash").classList.add("is-capStart");
 
           if (scene && video) {
             width = video.videoWidth;
@@ -83,13 +82,14 @@ function saveBlob(blob, fileName){
       var resultClose = function(){
         document.getElementById("capture_result").classList.remove("is-captured");
         document.getElementById("capture_flash").classList.remove("is-capStart");
-        document.removeEventListener('touchmove');
+        //document.removeEventListener('touchmove');
       }
       document.getElementById("result_close").onclick = function() {
         resultClose();
       };
 
           }
-    };
-  }
+    });
+
+}
 
