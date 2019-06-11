@@ -16,7 +16,7 @@
               framerate: 12,
               verbose: true,
               name: 01,
-              workersPath: '/cosmeticpress/artistarmake_frame1/js/',
+              workersPath: '/aframeTest/artistarmake_frame1/js/',
               timeLimit: 2
             });
 
@@ -75,7 +75,7 @@ setTimeout(function() {
       console.log(blob)
       reader.readAsDataURL(blob);
       reader.addEventListener("load", function () {
-        gifler('/cosmeticpress/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
+        gifler('/aframeTest/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
         document.getElementById("capture_convert").classList.remove("is-convert");
         document.getElementById("capture_result_img").src = reader.result;
         document.getElementById("capture_result").classList.add("is-captured");
