@@ -13,7 +13,7 @@
               format: 'gif',
               //display: true,
               quality: .15,
-              framerate: 12,
+              framerate: 1,
               verbose: true,
               name: 01,
               workersPath: '/aframeTest/artistarmake_frame1/js/',
