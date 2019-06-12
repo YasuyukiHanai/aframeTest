@@ -12,7 +12,7 @@
             var capturer = new CCapture({
               format: 'gif',
               //display: true,
-              quality: .85,
+              quality: .15,
               framerate: 12,
               verbose: true,
               name: 01,
