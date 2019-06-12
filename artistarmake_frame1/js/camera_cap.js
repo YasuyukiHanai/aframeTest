@@ -9,16 +9,31 @@
           var scene = document.getElementById('screen');
           var video = document.getElementsByTagName('video')[0];
           var loopFrame = 180;
-            var capturer = new CCapture({
+          var capturer;
+
+          if(navigator.userAgent.indexOf('Android') > 0 ){
+            capturer = new CCapture({
               format: 'gif',
               //display: true,
-              quality: .15,
-              framerate: 1,
+              quality: .75,
+              framerate: 6,
               verbose: true,
               name: 01,
               workersPath: '/aframeTest/artistarmake_frame1/js/',
               timeLimit: 2
             });
+          } else {
+            capturer = new CCapture({
+              format: 'gif',
+              //display: true,
+              quality: .85,
+              framerate: 12,
+              verbose: true,
+              name: 01,
+              workersPath: '/aframeTest/artistarmake_frame1/js/',
+              timeLimit: 2
+            });
+          };
 
 
           if (scene && video) {

@@ -296,6 +296,8 @@ body img {
 }
 
 .capture_result__img {
+    position: relative;
+    z-index: 2;
     display: block;
     width: 77.33333%;
     max-width: 85vw;
