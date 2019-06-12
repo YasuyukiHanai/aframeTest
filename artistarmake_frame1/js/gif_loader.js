@@ -5,7 +5,7 @@ var n=new i(t),o=n.promise();return n.setHowMany(e),n.init(),o}var s=t("./util")
 
 
 var logoImg = new Image();
-logoImg.src = '/cosmeticpress/artistarmake_frame1/img/logo.png';
+logoImg.src = '/aframeTest/artistarmake_frame1/img/logo.png';
 var logoLoad = false;
 logoImg.onload = function(){ logoLoad = true; }
 
@@ -30,4 +30,4 @@ function onDrawFrame(ctx, frame) {
     ctx.globalCompositeOperation = 'source-atop';
 }
 
-gifler('/cosmeticpress/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
+gifler('/aframeTest/artistarmake_frame1/img/gif.gif').frames('canvas.screen', onDrawFrame);
