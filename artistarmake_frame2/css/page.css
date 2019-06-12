@@ -276,7 +276,7 @@ body img {
     box-sizing: border-box;
     font-size: 0;
     opacity: 0;
-    background: url("/aframeTest/artistarmake_frame1/img/bg.png");
+    background: url("/cosmeticpress/artistarmake_frame1/img/bg.png");
     padding: 5.33333% 0;
     transition: opacity 700ms ease-out, -webkit-transform 300ms ease-out;
     transition: opacity 700ms ease-out, transform 300ms ease-out;
@@ -447,7 +447,7 @@ body img {
     position: relative;
     z-index: 3;
     text-align: center;
-    background: url("/aframeTest/artistarmake_frame1/img/bg.png");
+    background: url("/cosmeticpress/artistarmake_frame1/img/bg.png");
     padding: 6.66667% 0;
 }
 

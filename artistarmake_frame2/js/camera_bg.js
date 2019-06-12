@@ -21,6 +21,7 @@ window.addEventListener('load', function() {
   }
 
   var video = document.getElementById('camera-bg');
+  var canvas = document.getElementById('screen');
 
   var adjustToWindow = function (){
     var sourceWidth = video.videoWidth;
@@ -39,19 +40,23 @@ window.addEventListener('load', function() {
       // compute newWidth and set .width/.marginLeft
       var newWidth = sourceAspect * screenHeight
       video.style.width = newWidth+'px'
+      canvas.width = screenWidth;
       video.style.marginLeft = -(newWidth-screenWidth)/2+'px'
 
       // init style.height/.marginTop to normal value
       video.style.height = screenHeight+'px'
+      canvas.height = screenHeight
       video.style.marginTop = '0px'
     }else{
       // compute newHeight and set .height/.marginTop
       var newHeight = 1 / (sourceAspect / screenWidth)
       video.style.height = newHeight+'px'
+      canvas.height = screenHeight
       video.style.marginTop = -(newHeight-screenHeight)/2+'px'
 
       // init style.width/.marginLeft to normal value
       video.style.width = screenWidth+'px'
+      canvas.width = screenWidth
       video.style.marginLeft = '0px'
     }
   }
