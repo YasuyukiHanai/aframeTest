@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>8th Wall: image TEST</title>
+
+  <script src="//cdn.8thwall.com/web/aframe/8frame-0.9.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+  <!-- <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script> -->
+  <script src="//cdn.8thwall.com/web/aframe/aframe-animation-component-5.1.2.min.js"></script>
+  <script src="//cdn.8thwall.com/web/xrextras/xrextras.js"></script>
+  <script src="//apps.8thwall.com/xrweb?appKey=r3pnOBbGLSHdwOlh5DgvhdFGgU6s40qeXRd3X7asUJHe5RtDVE9g1t1LXkiuvKxzTsEjJe"></script>
+  <script>
+    // Component that places trees where the ground is clicked
+    AFRAME.registerComponent('tap-place', {
+      init: function() {
+        const ground = document.getElementById('ground')
+        ground.addEventListener('click', event => {
+          // Create new entity for the new object
+          const newElement = document.createElement('a-entity')
+          // The raycaster gives a location of the touch in the scene
+          const touchPoint = event.detail.intersection.point
+          newElement.setAttribute('position', touchPoint)
+          const randomYRotation = Math.random() * 360
+          newElement.setAttribute('rotation', '0 ' + randomYRotation + ' 0')
+          newElement.setAttribute('visible', 'false')
+          newElement.setAttribute('scale', '0.001 0.001 0.001')
+          newElement.setAttribute('gltf-model', '#treeModel')
+          newElement.setAttribute('renderer', 'gammaOutput: true;')
+          newElement.setAttribute('animation-mixer', 'clip: *;')
+          this.el.sceneEl.appendChild(newElement)
+          newElement.addEventListener('model-loaded', () => {
+            // Once the model is loaded, we are ready to show it popping in using an animation
+            newElement.setAttribute('visible', 'true')
+            newElement.setAttribute('animation', {
+              property: 'scale',
+              to: '3 3 3',
+              easing: 'easeOutElastic',
+              dur: 800,
+            })
+            setTimeout(() => {
+                newElement.setAttribute('animationEnd', {
+                  property: 'scale',
+                  from: '3 3 3',
+                  to: '0.001 3 0.001',
+                  dur: 200,
+                  easing: 'easeInQuad'
+                })
+                setTimeout(() => newElement.parentNode.removeChild(newElement), 800)
+              }, 1200)
+          })
+        })
+      }
+    });
+    AFRAME.registerComponent('target-video', {
+      schema: {
+        name: { type: 'string' },
+        video: {type: 'string' },
+      },
+      init: function () {
+        const object3D = this.el.object3D
+        const name = this.data.name
+        object3D.visible = false
+        const v = document.querySelector(this.data.video)
+        const el = this.el
+
+        const showImage = ({detail}) => {
+          if (name != detail.name) {
+            return
+          }
+          v.play()
+          object3D.position.copy(detail.position)
+          object3D.quaternion.copy(detail.rotation)
+          object3D.scale.set(detail.scale, detail.scale, detail.scale)
+          object3D.visible = true
+          setTimeout(() => {
+              this.el.setAttribute('animation', {
+                property: 'opacity',
+                //from: '1 1 2',
+                to: '0.1 0.1 0.1',
+                dur: 800
+              })
+              setTimeout(() => this.el.parentNode.removeChild(this.el), 1200)
+          }, 1800)
+        }
+        const hideImage = ({detail}) => {
+          if (name != detail.name) {
+            return
+          }
+          v.pause()
+          object3D.visible = false
+        }
+        this.el.sceneEl.addEventListener('xrimagefound', showImage)
+        this.el.sceneEl.addEventListener('xrimageupdated', showImage)
+        this.el.sceneEl.addEventListener('xrimagelost', hideImage)
+      }
+    })
+  </script>
+</head>
+
+<body>
+
+  <a-scene
+    tap-place
+    xrweb="disableWorldTracking: true"
+    xrextras-gesture-detector
+    xrextras-almost-there
+    xrextras-loading
+    xrextras-runtime-error>
+
+    <a-assets>
+      <a-asset-item id="s-model" src="crystal.glb"></a-asset-item>
+      <img id="s-thumb" src="BQ_btn2.jpg">
+      <video
+        id="s-video"
+        autoplay
+        crossorigin="anonymous"
+        loop="false"
+        src="BQ_resetclear_s15.mov">
+      </video>
+      <video
+        id="alpha-video"
+        muted
+        playsinline
+        autoplay
+        crossorigin="anonymous"
+        loop="false"
+        src="alpha.mp4">
+      </video>
+      <a-asset-item id="treeModel" src="test.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-camera
+      position="0 4 10"
+      raycaster="objects: .cantap"
+      cursor="fuse: false; rayOrigin: mouse;">
+    </a-camera>
+
+    <a-light type="directional" intensity="0.5" position="1 1 1"></a-light>
+    <a-light type="ambient" intensity=".88"></a-light>
+
+    <a-entity xrextras-named-image-target="name: AR_image">
+      <a-entity
+        xrextras-play-video="video: #s-video; thumb: #s-thumb; canstop: true"
+        geometry="primitive: plane; height: 1; width: 1.55;"
+        position="-.1 0 -0.01">
+      </a-entity>
+    </a-entity>
+
+    <a-entity xrextras-named-image-target="name: BQ_btn">
+      <!-- Add a child entity that can be rotated independently of the image target. -->
+      <a-entity xrextras-one-finger-rotate gltf-model="#s-model" scale="0.1 0.1 0.1" position="0 0 0" rotation="0 0 0" animation="delay: 100;property: rotation; to: 0 360 0; dur: 4000; easing: easeInQuart; loop: true;"></a-entity>
+    </a-entity>
+    <a-entity
+      id="ground"
+      class="cantap"
+      geometry="primitive: box"
+      material="color: #ffffff; transparent: true; opacity: 0.0"
+      scale="1000 2 1000"
+      position="0 -1 0">
+    </a-entity>
+
+  </a-scene>
+
+</body>
+</html>
